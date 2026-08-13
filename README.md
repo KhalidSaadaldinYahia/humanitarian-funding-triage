@@ -23,7 +23,7 @@ The project uses public 2025 plan and funding records from the [UN OCHA Humanita
 
 ## Open the project
 
-Download and extract `Humanitarian_Funding_Triage_PBIP.zip`, then open `HumanitarianFundingTriage.pbip` in a recent version of Power BI Desktop. The included CSV is the reproducible source snapshot used by the semantic model.
+Download and extract `Humanitarian_Funding_Triage_PBIP_approved.zip`, then open `HumanitarianFundingTriage.pbip` in a recent version of Power BI Desktop. The included CSV is the reproducible source snapshot used by the semantic model.
 
 ## Methodology and limitations
 
@@ -37,4 +37,7 @@ Download and extract `Humanitarian_Funding_Triage_PBIP.zip`, then open `Humanita
 
 The packaged PBIP was validated for report structure, visual definitions, dataset row count, and reconciliation of requirements, funding, funding gap, and coverage before publication.
 
-Created by **Khalid Saadaldin Yahia**.
+## Author
+
+**Khalid SaadAldin Yahia**  
+Data Analyst · Power BI · Python · SQL · Excel
