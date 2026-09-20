@@ -21,6 +21,8 @@ An operational Power BI dashboard for examining the financing position of 2025 h
 
 The project uses public 2025 plan and funding records from the [UN OCHA Humanitarian Programme Cycle API](https://api.hpc.tools/) and [Financial Tracking Service](https://fts.unocha.org/), retrieved on 13 August 2026.
 
+Language-code values (`en`, `es`, `fr`) that were accidentally loaded into `PlanType` were reconciled to `Humanitarian response plan`; regional, flash-appeal, and other plan categories remain unchanged.
+
 ## Open the project
 
 [Download the Power BI project archive](Humanitarian_Funding_Triage_Power_BI_Project.rar), extract it, then open `HumanitarianFundingTriage.pbip` in a recent version of Power BI Desktop. The included CSV is the reproducible source snapshot used by the semantic model.
@@ -30,7 +32,7 @@ Preview the completed dashboard: [open the PDF](Humanitarian_Funding_Triage_Dash
 ## Methodology and limitations
 
 - Funding coverage equals reported funding divided by plan requirements.
-- Unmet requirement equals plan requirements minus reported funding.
+- Unmet requirement equals the larger of plan requirements minus reported funding or zero. Portfolio unmet requirements therefore sum plan-level non-negative gaps.
 - The priority index is a transparent portfolio construct used only to organise financial exposure; it is not an official OCHA indicator and does not measure severity, access, implementation capacity, or programme quality.
 - FTS records are continually revised as new contributions are reported or corrected, so the dashboard represents the retrieval-date snapshot.
 - Non-plan funding flows are excluded from plan-level comparisons.
