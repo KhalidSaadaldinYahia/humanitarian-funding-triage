@@ -159,7 +159,7 @@ table FundingPlans
 		mode: import
 		source =
 				let
-					Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/KhalidSaadaldinYahia/humanitarian-funding-triage/main/project/data/humanitarian_funding_2025.csv"), [Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/KhalidSaadaldinYahia/humanitarian-funding-triage/9177727ec8ee8ad0b3aa6cf817e57703d445c0b2/project/data/humanitarian_funding_2025.csv"), [Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 					Typed = Table.TransformColumnTypes(Headers, {{"PlanID", Int64.Type}, {"Plan", type text}, {"ShortName", type text}, {"Country", type text}, {"ISO3", type text}, {"PlanType", type text}, {"RequirementsUSD", type number}, {"FundingUSD", type number}, {"GapUSD", type number}, {"CoveragePct", type number}, {"UnfundedPct", type number}, {"PriorityScore", type number}, {"StartDate", type date}, {"EndDate", type date}})
 				in Typed

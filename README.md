@@ -46,9 +46,13 @@ Data Analyst · Power BI · Python · SQL · Excel
 
 ## Open and inspect the report
 
-- [Preview the dashboard PDF](Humanitarian_Funding_Triage_Dashboard.pdf). A PDF is a static export; the `.pbip` project contains the interactive report.
+- [Preview the dashboard PDF](Humanitarian_Funding_Triage_Dashboard.pdf). This PDF is a newly calculated, source-backed data preview; the `.pbip` project contains the interactive report.
 - [Browse the Power BI project](project/) or [download this repository as a ZIP](https://github.com/KhalidSaadaldinYahia/humanitarian-funding-triage/archive/refs/heads/main.zip). Keep the `project` folder intact after extracting.
 - Open [`HumanitarianFundingTriage.pbip`](project/HumanitarianFundingTriage.pbip) from the extracted `project` folder in a recent Power BI Desktop. The `.pbip` file references its sibling `.Report` and `.SemanticModel` folders; it cannot open by itself after downloading only that file.
-- On refresh, choose **Anonymous** access if Power BI requests credentials for `raw.githubusercontent.com`. The project reads the included CSV snapshot from this repository's public `main` branch. For offline refresh, replace each table query's `Web.Contents(...)` CSV source with `File.Contents(...)` pointing to its included local `project/data` CSV.
+- On refresh, choose **Anonymous** access if Power BI requests credentials for `raw.githubusercontent.com`. The project reads the included CSV snapshot from this repository at fixed commit `9177727ec8ee`. For offline refresh, replace each table query's `Web.Contents(...)` CSV source with `File.Contents(...)` pointing to its included local `project/data` CSV.
 
 The CSV data snapshots are included under [`project/data`](project/data/). A `.pbix` was not generated because the PBIP source cannot be converted faithfully without opening and saving it in Power BI Desktop.
+
+### Reproducible data snapshot
+
+The semantic model reads CSV files from immutable commit `9177727ec8ee8ad0b3aa6cf817e57703d445c0b2`. The same files are included in `project/data/` for inspection. Refreshing this project will not silently switch to a later `main` branch snapshot. To analyze newer data, update the CSV and source URL together and revalidate the measures and preview.
