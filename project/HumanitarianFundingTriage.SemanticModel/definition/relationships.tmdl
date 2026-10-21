@@ -1,0 +1,9 @@
+relationship 7842fa5c-3bba-46b7-86cf-cab92e37fc9c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FundingPlans.StartDate
+	toColumn: LocalDateTable_75c24f9f-d4df-40d2-93a7-f5fff5ee8f32.Date
+
+relationship b4cce360-380a-4828-97c5-f99437a742af
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FundingPlans.EndDate
+	toColumn: LocalDateTable_ac62b547-fa46-4992-8f62-ef40e6da429f.Date

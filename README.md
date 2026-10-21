@@ -23,11 +23,6 @@ The project uses public 2025 plan and funding records from the [UN OCHA Humanita
 
 Language-code values (`en`, `es`, `fr`) that were accidentally loaded into `PlanType` were reconciled to `Humanitarian response plan`; regional, flash-appeal, and other plan categories remain unchanged.
 
-## Open the project
-
-[Download the Power BI project archive](Humanitarian_Funding_Triage_Power_BI_Project.rar), extract it, then open `HumanitarianFundingTriage.pbip` in a recent version of Power BI Desktop. The included CSV is the reproducible source snapshot used by the semantic model.
-
-Preview the completed dashboard: [open the PDF](Humanitarian_Funding_Triage_Dashboard.pdf).
 
 ## Methodology and limitations
 
@@ -45,3 +40,12 @@ The packaged PBIP was validated for report structure, visual definitions, datase
 
 **Khalid SaadAldin Yahia**  
 Data Analyst · Power BI · Python · SQL · Excel
+
+## Open and inspect the report
+
+- [Preview the dashboard PDF](Humanitarian_Funding_Triage_Dashboard.pdf). A PDF is a static export; the `.pbip` project contains the interactive report.
+- [Browse the Power BI project](project/) or [download this repository as a ZIP](https://github.com/KhalidSaadaldinYahia/humanitarian-funding-triage/archive/refs/heads/main.zip). Keep the `project` folder intact after extracting.
+- Open [`HumanitarianFundingTriage.pbip`](project/HumanitarianFundingTriage.pbip) from the extracted `project` folder in a recent Power BI Desktop. The `.pbip` file references its sibling `.Report` and `.SemanticModel` folders; it cannot open by itself after downloading only that file.
+- On refresh, choose **Anonymous** access if Power BI requests credentials for `raw.githubusercontent.com`. The project reads the included CSV snapshot from this repository's public `main` branch. For offline refresh, replace each table query's `Web.Contents(...)` CSV source with `File.Contents(...)` pointing to its included local `project/data` CSV.
+
+The CSV data snapshots are included under [`project/data`](project/data/). A `.pbix` was not generated because the PBIP source cannot be converted faithfully without opening and saving it in Power BI Desktop.

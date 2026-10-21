@@ -1,0 +1,165 @@
+table FundingPlans
+	lineageTag: ee396ce4-1062-4b35-8cdd-1e81c38f1435
+
+	measure Requirements = SUM(FundingPlans[RequirementsUSD])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d4636370-5960-408d-9547-ccd1edfa9148
+
+	measure Funding = SUM(FundingPlans[FundingUSD])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6ae4dc7d-b009-4f3e-9d0e-cb64dc27f9c7
+
+	measure 'Funding Gap' = SUM(FundingPlans[GapUSD])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: c106d594-ff9f-4515-8673-0f4a74c02a7f
+
+	measure Coverage = DIVIDE([Funding], [Requirements])
+		formatString: 0.0%
+		lineageTag: 7239a604-0973-431b-8e22-48cb2bdb0bb7
+
+	measure 'Plans Tracked' = DISTINCTCOUNT(FundingPlans[PlanID])
+		formatString: 0
+		lineageTag: c6004cd4-8403-4c62-b7e8-eb639bf17740
+
+	measure 'Median Coverage' = MEDIAN(FundingPlans[CoveragePct])
+		formatString: 0.0%
+		lineageTag: 0f6cff06-a112-427b-9996-96aa1b0280eb
+
+	measure 'Priority Index' = SUM(FundingPlans[PriorityScore])
+		formatString: #,0
+		lineageTag: b5e0ce0a-b2e8-4779-8e69-c5d527cc832b
+
+	column PlanID
+		dataType: int64
+		lineageTag: d5d10b89-7db9-4775-b092-2632ee366f4f
+		summarizeBy: count
+		sourceColumn: PlanID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plan
+		dataType: string
+		lineageTag: 9d148b30-ddd9-46e6-8e0c-566888920e5e
+		summarizeBy: none
+		sourceColumn: Plan
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShortName
+		dataType: string
+		lineageTag: d53f4556-faad-45be-98b3-39cb23c30682
+		summarizeBy: none
+		sourceColumn: ShortName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 817f93f1-2bdb-4f3c-b649-3c6a4df12c3f
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISO3
+		dataType: string
+		lineageTag: ad037b83-c0c0-4c6b-812a-1d8d2d4a1889
+		summarizeBy: none
+		sourceColumn: ISO3
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanType
+		dataType: string
+		lineageTag: b56824d2-8a8e-4837-acc7-0e592fbbed1c
+		summarizeBy: none
+		sourceColumn: PlanType
+
+		annotation SummarizationSetBy = Automatic
+
+	column RequirementsUSD
+		dataType: double
+		formatString: $#,0
+		lineageTag: 12f55660-efed-487c-a8c0-0237398b0c48
+		summarizeBy: sum
+		sourceColumn: RequirementsUSD
+
+	column FundingUSD
+		dataType: double
+		formatString: $#,0
+		lineageTag: 38a7c701-c90e-4c7b-89cc-4fa169e33107
+		summarizeBy: sum
+		sourceColumn: FundingUSD
+
+	column GapUSD
+		dataType: double
+		formatString: $#,0
+		lineageTag: 4e803e8a-6da1-42c0-91dc-1dcbdccd388f
+		summarizeBy: sum
+		sourceColumn: GapUSD
+
+	column CoveragePct
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d5eb3598-599f-454a-8486-4681184a1e45
+		summarizeBy: sum
+		sourceColumn: CoveragePct
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnfundedPct
+		dataType: double
+		formatString: 0.0%
+		lineageTag: edb19c1d-047b-48cb-bd75-ac8228376b4c
+		summarizeBy: sum
+		sourceColumn: UnfundedPct
+
+		annotation SummarizationSetBy = Automatic
+
+	column PriorityScore
+		dataType: double
+		formatString: $#,0
+		lineageTag: f9205b47-d4b4-41b9-a562-3e211c2cdcc2
+		summarizeBy: sum
+		sourceColumn: PriorityScore
+
+	column StartDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: bd0e278f-58d2-43ce-bc12-3f9f6beaabf6
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		variation Variation
+			isDefault
+			relationship: 7842fa5c-3bba-46b7-86cf-cab92e37fc9c
+			defaultHierarchy: LocalDateTable_75c24f9f-d4df-40d2-93a7-f5fff5ee8f32.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 3c91c0a6-dbcb-4d84-9c6f-b0e42578a28c
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		variation Variation
+			isDefault
+			relationship: b4cce360-380a-4828-97c5-f99437a742af
+			defaultHierarchy: LocalDateTable_ac62b547-fa46-4992-8f62-ef40e6da429f.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FundingPlans = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/KhalidSaadaldinYahia/humanitarian-funding-triage/main/project/data/humanitarian_funding_2025.csv"), [Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Typed = Table.TransformColumnTypes(Headers, {{"PlanID", Int64.Type}, {"Plan", type text}, {"ShortName", type text}, {"Country", type text}, {"ISO3", type text}, {"PlanType", type text}, {"RequirementsUSD", type number}, {"FundingUSD", type number}, {"GapUSD", type number}, {"CoveragePct", type number}, {"UnfundedPct", type number}, {"PriorityScore", type number}, {"StartDate", type date}, {"EndDate", type date}})
+				in Typed
