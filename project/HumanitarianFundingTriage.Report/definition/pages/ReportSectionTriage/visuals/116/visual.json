@@ -50,6 +50,23 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FundingPlans"
+                  }
+                },
+                "Property": "Funding Gap"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {

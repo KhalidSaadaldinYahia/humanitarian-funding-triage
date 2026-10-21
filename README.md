@@ -1,6 +1,6 @@
 # Humanitarian Funding Triage
 
-An operational Power BI dashboard for examining the financing position of 2025 humanitarian response plans. It compares plan requirements with reported funding, quantifies unmet requirements, and supports transparent prioritisation without presenting financial exposure as a substitute for humanitarian severity.
+An operational Power BI dashboard for examining the financing position of 2025 humanitarian funding plans and appeals. It compares plan requirements with reported funding, quantifies unmet requirements, and supports transparent prioritisation without presenting financial exposure as a substitute for humanitarian severity.
 
 ## Dashboard pages
 
@@ -11,7 +11,7 @@ An operational Power BI dashboard for examining the financing position of 2025 h
 
 ## Key validated figures
 
-- 46 released humanitarian response plans
+- 46 plans and appeals: 23 humanitarian response plans, 9 regional response plans, 8 flash appeals, and 6 other plans
 - USD 45.47 billion in requirements
 - USD 15.59 billion in reported funding
 - USD 29.88 billion in unmet requirements
@@ -19,9 +19,11 @@ An operational Power BI dashboard for examining the financing position of 2025 h
 
 ## Data source
 
-The project uses public 2025 plan and funding records from the [UN OCHA Humanitarian Programme Cycle API](https://api.hpc.tools/) and [Financial Tracking Service](https://fts.unocha.org/), retrieved on 13 August 2026.
+The project uses public 2025 plan and funding records from the [UN OCHA Humanitarian Programme Cycle API](https://api.hpc.tools/) and [Financial Tracking Service](https://fts.unocha.org/), retrieved on 13 August 2026. The exact API request URLs, response files, and transformation script used for the original extract were not retained; this repository's [`project/data/humanitarian_funding_2025.csv`](project/data/humanitarian_funding_2025.csv) is the reproducible analytical snapshot. Do not interpret a future API refresh as the same snapshot.
 
 Language-code values (`en`, `es`, `fr`) that were accidentally loaded into `PlanType` were reconciled to `Humanitarian response plan`; regional, flash-appeal, and other plan categories remain unchanged.
+
+The nine regional response plans are assigned the scope label `Regional / multi-country` and a blank ISO3. The prior extract attached each full regional requirement to one country, which falsely implied that the amount belonged to that country. The Country / Plan Scope slicer now shows regional plans separately; its country selections describe only plans with a country-level scope. Do not allocate regional totals across participating countries without a separate allocation source.
 
 
 ## Methodology and limitations
@@ -31,6 +33,7 @@ Language-code values (`en`, `es`, `fr`) that were accidentally loaded into `Plan
 - The priority index is a transparent portfolio construct used only to organise financial exposure; it is not an official OCHA indicator and does not measure severity, access, implementation capacity, or programme quality.
 - FTS records are continually revised as new contributions are reported or corrected, so the dashboard represents the retrieval-date snapshot.
 - Non-plan funding flows are excluded from plan-level comparisons.
+- “Largest Unmet Requirements” is sorted by descending plan-level funding gap.
 
 ## Quality assurance
 
