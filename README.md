@@ -1,5 +1,9 @@
 # Humanitarian Funding Triage
 
+## Download the complete project
+
+**To open this project:** [download the complete repository ZIP](https://github.com/KhalidSaadaldinYahia/humanitarian-funding-triage/archive/refs/heads/main.zip), extract it, and open `project/HumanitarianFundingTriage.pbip` in Power BI Desktop. Keep the `.Report`, `.SemanticModel`, and `data` folders beside the `.pbip` file. **Downloading the `.pbip` file alone will not produce a working report.** The included CSVs are the inspectable data snapshot; the model refreshes from a fixed online copy of those CSVs by default. The PDF is a static preview.
+
 An operational Power BI dashboard for examining the financing position of 2025 humanitarian funding plans and appeals. It compares plan requirements with reported funding, quantifies unmet requirements, and supports transparent prioritisation without presenting financial exposure as a substitute for humanitarian severity.
 
 ## Dashboard pages
