@@ -1,8 +1,11 @@
 # Humanitarian Funding Triage
 
-## Open the interactive dashboard
+## Files
 
-**Recommended:** [download HumanitarianFundingTriage.pbix](HumanitarianFundingTriage.pbix) and open it in a recent Power BI Desktop. The PBIX contains the report and its embedded data model, so you only need this one file to explore the saved dashboard. For reproducible source files and the included CSV snapshot, [download the complete repository ZIP](https://github.com/KhalidSaadaldinYahia/humanitarian-funding-triage/archive/refs/heads/main.zip), extract it, and open `project/HumanitarianFundingTriage.pbip` with its sibling `.Report`, `.SemanticModel`, and `data` folders intact. The PDF below is a static preview. A data refresh may require network access to the documented source snapshot.
+- [Open the Power BI dashboard](HumanitarianFundingTriage.pbix) in Power BI Desktop.
+- [Read the PDF analytical preview](Humanitarian_Funding_Triage_Dashboard.pdf). This PDF summarises independently checked figures; it is not yet a page-for-page export of the PBIX. A matching PDF export is pending verification in Power BI Desktop.
+
+The PBIX is the single-file dashboard. A data refresh may need network access to its saved source URLs.
 
 ## Dashboard pages
 
@@ -21,7 +24,7 @@
 
 ## Data source
 
-The project uses public 2025 plan and funding records from the [UN OCHA Humanitarian Programme Cycle API](https://api.hpc.tools/) and [Financial Tracking Service](https://fts.unocha.org/), retrieved on 13 August 2026. The exact API request URLs, response files, and transformation script used for the original extract were not retained; this repository's [`project/data/humanitarian_funding_2025.csv`](project/data/humanitarian_funding_2025.csv) is the reproducible analytical snapshot. Do not interpret a future API refresh as the same snapshot.
+The project uses public 2025 plan and funding records from the [UN OCHA Humanitarian Programme Cycle API](https://api.hpc.tools/) and [Financial Tracking Service](https://fts.unocha.org/), retrieved on 13 August 2026. The exact API request URLs, response files, and transformation script used for the original extract were not retained; the PBIX uses a saved analytical snapshot. Do not interpret a future API refresh as the same snapshot.
 
 Language-code values (`en`, `es`, `fr`) that were accidentally loaded into `PlanType` were reconciled to `Humanitarian response plan`; regional, flash-appeal, and other plan categories remain unchanged.
 
@@ -45,16 +48,3 @@ The packaged PBIP was validated for report structure, visual definitions, datase
 
 **Khalid SaadAldin Yahia**  
 Data Analyst · Power BI · Python · SQL · Excel
-
-## Open and inspect the report
-
-- [Preview the dashboard PDF](Humanitarian_Funding_Triage_Dashboard.pdf). This PDF is a newly calculated, source-backed data preview; the `.pbip` project contains the interactive report.
-- [Browse the Power BI project](project/) or [download this repository as a ZIP](https://github.com/KhalidSaadaldinYahia/humanitarian-funding-triage/archive/refs/heads/main.zip). Keep the `project` folder intact after extracting.
-- Open [`HumanitarianFundingTriage.pbip`](project/HumanitarianFundingTriage.pbip) from the extracted `project` folder in a recent Power BI Desktop. The `.pbip` file references its sibling `.Report` and `.SemanticModel` folders; it cannot open by itself after downloading only that file.
-- On refresh, choose **Anonymous** access if Power BI requests credentials for `raw.githubusercontent.com`. The project reads the included CSV snapshot from this repository at fixed commit `9177727ec8ee`. For offline refresh, replace each table query's `Web.Contents(...)` CSV source with `File.Contents(...)` pointing to its included local `project/data` CSV.
-
-The CSV data snapshots are included under [`project/data`](project/data/). A `.pbix` was not generated because the PBIP source cannot be converted faithfully without opening and saving it in Power BI Desktop.
-
-### Reproducible data snapshot
-
-The semantic model reads CSV files from immutable commit `9177727ec8ee8ad0b3aa6cf817e57703d445c0b2`. The same files are included in `project/data/` for inspection. Refreshing this project will not silently switch to a later `main` branch snapshot. To analyze newer data, update the CSV and source URL together and revalidate the measures and preview.
